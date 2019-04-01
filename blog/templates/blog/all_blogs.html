@@ -1,15 +1,14 @@
 
 <!doctype html>
 <html lang="en">
-  {% load staticfiles %}
-  
   <head>
+    {% load staticfiles %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
-    <title>Album example · Bootstrap</title>
+    <title>Laurence's Blog</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
 
@@ -34,54 +33,39 @@
     </style>
   </head>
   <body>
-
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href=" {% url 'home' %} ">Laurence</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav ml-auto">
-          <a class="nav-item nav-link " href="https://www.facebook.com/renzyndrome">Facebook</a>
-          <a class="nav-item nav-link" href={% static 'desert_song.pdf' %}>Resume</a>
-          <a class="nav-item nav-link" href="{% url 'all_blogs' %}">Blog</a>
-        </div>
-      </div>
-    </nav>
-
-<main role="main">
-
-  <section class="jumbotron text-center">
-    <div class="container">
-      <h1 class="jumbotron-heading">Hi, I'm Laurence</h1>
-      <p class="lead text-muted">Hey, my name is Laurence and I love to make Django websites.</p>
-      <p>
-        <a href="mailto:gabrielrebadulla@gmail.com" class="btn btn-primary my-2">Email Me</a>
-      </p>
-      <img src="{% static 'mina_penguin.jpg' %}" />
-    </div>
-  </section>
-
-  <div class="album py-5 bg-light">
-    <div class="container">
-      <div class="row">
-
-        {% for job in jobs.all %}
-
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <img class="card-img-top" src="{{ job.image.url }}" />
-            <div class="card-body">
-              <p class="card-text">{{ job.summary }}</p>              
+    
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <a class="navbar-brand" href=" {% url 'home' %} ">Laurence</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav ml-auto">
+              <a class="nav-item nav-link " href="https://www.facebook.com/renzyndrome">Facebook</a>
+              <a class="nav-item nav-link" href={% static 'desert_song.pdf' %}>Resume</a>
+              <a class="nav-item nav-link" href="{% url 'all_blogs' %}">Blog</a>
             </div>
           </div>
-        </div>
+        </nav>
 
-        {% endfor %}
+<main role="main">
+    <div class="container">
 
-      </div>
+      <h1 class="text-center pt-5">Welcome to Laurence's Blog</h1>
+      <br />
+      <br />
+      <h2>Latest Post</h2>
+      <hr/>
+    
+      {% for blog in blog.all %}
+      <a href="{% url 'detail' blog.id %}"><h3>{{ blog.title }}</h3></a>
+      {{ blog.pub_date_pretty }}
+      <br/>
+      <img src="{{ blog.image.url }}" height="200" width="200" />
+      <p>{{ blog.summary }}</p>
+      {% endfor %}
     </div>
-  </div>
+
 </main>
 
 <footer class="text-muted">
